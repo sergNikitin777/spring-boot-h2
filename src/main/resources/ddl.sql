@@ -15,4 +15,8 @@ CREATE TABLE phones
 
 INSERT INTO clients(first_Name) VALUES ('Client1');
 INSERT INTO phones(client_id, phone_number) VALUES (1,'34534534534534');
-INSERT INTO phones(client_id, phone_number) VALUES (1,'34534534534534');
+INSERT INTO phones(client_id, phone_number) VALUES (1,'43546456565656');
+INSERT INTO clients(first_Name) VALUES ('Client2');
+INSERT INTO phones(client_id, phone_number) VALUES (2,'111');
+INSERT INTO phones(client_id, phone_number) VALUES (2,'222');
+INSERT INTO phones(client_id, phone_number) VALUES (2,'333');

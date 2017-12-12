@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @Controller
@@ -22,19 +23,10 @@ public class ClientController {
 
     // Get clients
     @RequestMapping(value = "/clients", method = RequestMethod.GET)
-    public ResponseEntity<List<ClientDetails>> clientsDetails() {
-        List<ClientDetails> clientDetails = clientService.getClientsDetails();
-        return new ResponseEntity<List<ClientDetails>>(clientDetails, HttpStatus.OK);
+    public ResponseEntity<List<ClientDetails>> clientsDetails(@PathParam("id") Integer id) {
+            List<ClientDetails> clientDetails = clientService.getClientsDetails(id);
+            return new ResponseEntity<List<ClientDetails>>(clientDetails, HttpStatus.OK);
     }
-
-    // Get client
-    @RequestMapping(value = "/client", method = RequestMethod.GET)
-    public ResponseEntity<List<Phone>> clientDetails() {
-        ClientDetails clientDetails = clientService.getClientDetails(1);
-        List<Phone> phone = clientDetails.getPhones();
-        return new ResponseEntity<List<Phone>>(phone, HttpStatus.OK);
-    }
-
 
     // Add new Client
     @RequestMapping(value = "/addclient", method = RequestMethod.POST)

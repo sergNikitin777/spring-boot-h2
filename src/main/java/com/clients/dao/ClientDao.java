@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ClientDao {
 	
-	List<ClientDetails> getClientsDetails();
+	List<ClientDetails> getClientsDetails(Integer id);
 
 	//ClientDetails getClientDetails();
 

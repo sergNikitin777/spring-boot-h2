@@ -3,6 +3,7 @@ package com.clients.dao.impl;
 import com.clients.dao.ClientDao;
 import com.clients.model.ClientDetails;
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -19,9 +21,16 @@ public class ClientDaoImpl implements ClientDao {
     private EntityManager entityManager;
 
 	@Override
-	public List<ClientDetails> getClientsDetails() {
-		Criteria criteria = entityManager.unwrap(Session.class).createCriteria(ClientDetails.class);
-		return criteria.list();
+	public List<ClientDetails> getClientsDetails(Integer id) {
+		if (id==null) {
+			Criteria criteria = entityManager.unwrap(Session.class).createCriteria(ClientDetails.class);
+			return criteria.list();
+		}else{
+			List<ClientDetails> list = new ArrayList<ClientDetails>();
+			ClientDetails clientDetails = entityManager.find(ClientDetails.class,id);
+			list.add(clientDetails);
+			return list;
+		}
 	}
 
 	@Override

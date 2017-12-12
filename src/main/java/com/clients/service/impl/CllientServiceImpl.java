@@ -23,8 +23,8 @@ public class CllientServiceImpl implements ClientService {
     private PhoneDao phoneDao;
 
     @Override
-    public List<ClientDetails> getClientsDetails() {
-        return clientDao.getClientsDetails();
+    public List<ClientDetails> getClientsDetails(Integer id) {
+        return clientDao.getClientsDetails(id);
 
     }
 

@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface ClientService {
 
-	List<ClientDetails> getClientsDetails();
+	List<ClientDetails> getClientsDetails(Integer id);
 
     //ClientDetails getClientDetails();
 
