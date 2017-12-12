@@ -1,6 +1,7 @@
 package com.clients.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,7 +18,7 @@ public class ClientDetails {
 	@Column
 	private String firstName;
 
-	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Phone> phones;
 
@@ -25,6 +26,11 @@ public class ClientDetails {
 	}
 
 	public ClientDetails(String firstName){
+		this.firstName = firstName;
+	}
+
+	public ClientDetails(int id, String firstName){
+		this.id = id;
 		this.firstName = firstName;
 	}
 
@@ -46,5 +52,9 @@ public class ClientDetails {
 
 	public List<Phone> getPhones() {
 		return phones;
+	}
+
+	public void setPhones(List<Phone> phones) {
+		this.phones = phones;
 	}
 }

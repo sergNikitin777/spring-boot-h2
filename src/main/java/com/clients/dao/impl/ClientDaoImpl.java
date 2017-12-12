@@ -5,12 +5,16 @@ import com.clients.model.ClientDetails;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +27,16 @@ public class ClientDaoImpl implements ClientDao {
 	@Override
 	public List<ClientDetails> getClientsDetails(Integer id) {
 		if (id==null) {
-			Criteria criteria = entityManager.unwrap(Session.class).createCriteria(ClientDetails.class);
-			return criteria.list();
+//			Criteria criteria = entityManager.unwrap(Session.class).createCriteria(ClientDetails.class);
+//			criteria.setProjection(Projections.projectionList()
+//					.add(Projections.property("id"),"id")
+//					.add(Projections.property("firstName"),"firstName"));
+//			return criteria.list();
+
+			String query = "SELECT NEW ClientDetails(i.id, i.firstName) FROM ClientDetails i ";
+			TypedQuery<ClientDetails> typedQuery = entityManager.createQuery(query , ClientDetails.class);
+			List<ClientDetails> results = typedQuery.getResultList();
+			return results;
 		}else{
 			List<ClientDetails> list = new ArrayList<ClientDetails>();
 			ClientDetails clientDetails = entityManager.find(ClientDetails.class,id);

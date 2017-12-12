@@ -1,5 +1,8 @@
 package com.clients.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -13,7 +16,9 @@ public class Phone {
 	@GeneratedValue(strategy = IDENTITY)
 	private int id;
 
+
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "CLIENT_ID")
 	private ClientDetails client;
 
