@@ -25,8 +25,8 @@ public class ClientDaoImpl implements ClientDao {
 	}
 
 	@Override
-	public ClientDetails getClientDetails() {
-		return null;
+	public ClientDetails getClientDetails(int clientId) {
+		return entityManager.find(ClientDetails.class, clientId);
 	}
 
 	@Override

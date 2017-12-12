@@ -8,9 +8,11 @@ public interface ClientDao {
 	
 	List<ClientDetails> getClientsDetails();
 
-	ClientDetails getClientDetails();
+	//ClientDetails getClientDetails();
 
-	boolean clientExists(String firstName);
+    ClientDetails getClientDetails(int clientId);
+
+    boolean clientExists(String firstName);
 
 	void addClient(ClientDetails client);
 }

@@ -30,7 +30,7 @@ public class ClientController {
     // Get client
     @RequestMapping(value = "/client", method = RequestMethod.GET)
     public ResponseEntity<ClientDetails> clientDetails() {
-        ClientDetails clientDetails = clientService.getClientDetails();
+        ClientDetails clientDetails = clientService.getClientDetails(1);
         return new ResponseEntity<ClientDetails>(clientDetails, HttpStatus.OK);
     }
 

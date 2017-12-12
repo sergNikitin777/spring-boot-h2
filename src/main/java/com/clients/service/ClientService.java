@@ -12,7 +12,9 @@ public interface ClientService {
 
 	List<ClientDetails> getClientsDetails();
 
-    ClientDetails getClientDetails();
+    //ClientDetails getClientDetails();
+
+    ClientDetails getClientDetails(int clientId);
 
     javafx.util.Pair<Boolean,String> addClient(ClientDetails client);
 

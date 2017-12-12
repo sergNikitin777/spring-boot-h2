@@ -29,8 +29,8 @@ public class CllientServiceImpl implements ClientService {
     }
 
     @Override
-    public ClientDetails getClientDetails() {
-        return clientDao.getClientDetails();
+    public ClientDetails getClientDetails(int clientId) {
+        return clientDao.getClientDetails(clientId);
 
     }
 
