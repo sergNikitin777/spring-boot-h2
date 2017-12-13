@@ -8,6 +8,7 @@ import com.clients.dao.PhoneDao;
 import com.clients.model.Client;
 import com.clients.model.Phone;
 import com.clients.service.ClientService;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +59,16 @@ public class CllientServiceImpl implements ClientService {
                 return new javafx.util.Pair<Boolean, String>(false, e.getLocalizedMessage());
             }
             return new javafx.util.Pair<Boolean, String>(true, "success");
+        }
+    }
+
+    @Override
+    public Pair<Boolean, String> editPhone(Phone phone) {
+        if (phoneDao.phoneExistsById(phone.getId())){
+            phoneDao.editPhone(phone);
+            return new javafx.util.Pair<Boolean, String>(true, "success");
+        }else{
+            return new javafx.util.Pair<Boolean, String>(false, "phone not found");
         }
     }
 }

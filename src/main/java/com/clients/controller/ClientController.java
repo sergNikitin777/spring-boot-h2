@@ -59,4 +59,20 @@ public class ClientController {
                     .body(pair.getValue());
         }
     }
+
+    // Update Client Phone
+    @RequestMapping(value = "/editphone", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<String> editPhone(@Valid @RequestBody Phone phone) {
+        Pair<Boolean, String> pair = clientService.editPhone(phone);
+        if (pair.getKey()) {
+            return ResponseEntity.status(HttpStatus.CREATED)
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .body(pair.getValue());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .body(pair.getValue());
+        }
+    }
 }

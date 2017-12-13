@@ -13,7 +13,7 @@ public class Phone {
 	@Id
 	@Column
 	@GeneratedValue(strategy = IDENTITY)
-	private int id;
+	private Integer id;
 
 
 	@ManyToOne

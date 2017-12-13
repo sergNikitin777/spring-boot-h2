@@ -8,8 +8,6 @@ public interface ClientDao {
 	
 	List<Client> getClients(Integer id);
 
-	//Client getClient();
-
     Client getClient(int clientId);
 
     boolean clientExists(String firstName);
