@@ -1,7 +1,6 @@
 package com.clients.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -20,7 +19,7 @@ public class Phone {
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name = "CLIENT_ID")
-	private ClientDetails client;
+	private Client client;
 
 	@Column
 	private String phoneNumber;
@@ -42,11 +41,11 @@ public class Phone {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public ClientDetails getClient() {
+	public Client getClient() {
 		return client;
 	}
 
-	public void setClient(ClientDetails client) {
+	public void setClient(Client client) {
 		this.client = client;
 	}
 }

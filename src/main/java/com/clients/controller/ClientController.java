@@ -1,6 +1,6 @@
 package com.clients.controller;
 
-import com.clients.model.ClientDetails;
+import com.clients.model.Client;
 import com.clients.model.Phone;
 import com.clients.service.ClientService;
 import javafx.util.Pair;
@@ -23,15 +23,15 @@ public class ClientController {
 
     // Get clients
     @RequestMapping(value = "/clients", method = RequestMethod.GET)
-    public ResponseEntity<List<ClientDetails>> clientsDetails(@PathParam("id") Integer id) {
-            List<ClientDetails> clientDetails = clientService.getClientsDetails(id);
-            return new ResponseEntity<List<ClientDetails>>(clientDetails, HttpStatus.OK);
+    public ResponseEntity<List<Client>> clients(@PathParam("id") Integer id) {
+            List<Client> client = clientService.getClients(id);
+            return new ResponseEntity<List<Client>>(client, HttpStatus.OK);
     }
 
     // Add new Client
     @RequestMapping(value = "/addclient", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<String> addClient(@Valid @RequestBody ClientDetails client) {
+    public ResponseEntity<String> addClient(@Valid @RequestBody Client client) {
         Pair<Boolean, String> pair = clientService.addClient(client);
         if (pair.getKey()) {
             return ResponseEntity.status(HttpStatus.CREATED)

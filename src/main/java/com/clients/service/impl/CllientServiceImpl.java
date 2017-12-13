@@ -5,7 +5,7 @@ package com.clients.service.impl;
 
 import com.clients.dao.ClientDao;
 import com.clients.dao.PhoneDao;
-import com.clients.model.ClientDetails;
+import com.clients.model.Client;
 import com.clients.model.Phone;
 import com.clients.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +23,19 @@ public class CllientServiceImpl implements ClientService {
     private PhoneDao phoneDao;
 
     @Override
-    public List<ClientDetails> getClientsDetails(Integer id) {
-        return clientDao.getClientsDetails(id);
+    public List<Client> getClients(Integer id) {
+        return clientDao.getClients(id);
 
     }
 
     @Override
-    public ClientDetails getClientDetails(int clientId) {
-        return clientDao.getClientDetails(clientId);
+    public Client getClient(int clientId) {
+        return clientDao.getClient(clientId);
 
     }
 
     @Override
-    public synchronized javafx.util.Pair<Boolean,String> addClient(ClientDetails client){
+    public synchronized javafx.util.Pair<Boolean,String> addClient(Client client){
        if (clientDao.clientExists(client.getFirstName())){
            return new javafx.util.Pair<Boolean, String>(false, "client alredy exists");
        }

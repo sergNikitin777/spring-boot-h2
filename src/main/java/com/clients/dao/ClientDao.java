@@ -1,18 +1,18 @@
 package com.clients.dao;
 
-import com.clients.model.ClientDetails;
+import com.clients.model.Client;
 
 import java.util.List;
 
 public interface ClientDao {
 	
-	List<ClientDetails> getClientsDetails(Integer id);
+	List<Client> getClients(Integer id);
 
-	//ClientDetails getClientDetails();
+	//Client getClient();
 
-    ClientDetails getClientDetails(int clientId);
+    Client getClient(int clientId);
 
     boolean clientExists(String firstName);
 
-	void addClient(ClientDetails client);
+	void addClient(Client client);
 }

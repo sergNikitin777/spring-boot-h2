@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "CLIENTS")
-public class ClientDetails {
+public class Client {
 
 	@Id
 	@Column
@@ -22,14 +22,15 @@ public class ClientDetails {
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Phone> phones;
 
-	public ClientDetails(){
+	public Client(){
 	}
 
-	public ClientDetails(String firstName){
+	public Client(String firstName){
 		this.firstName = firstName;
 	}
 
-	public ClientDetails(int id, String firstName){
+	public Client(int id, String firstName){
+		super();
 		this.id = id;
 		this.firstName = firstName;
 	}
