@@ -3,6 +3,9 @@ package com.clients.controller;
 import com.clients.model.Client;
 import com.clients.model.Phone;
 import com.clients.service.ClientService;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,18 +48,28 @@ public class ClientController {
     }
 
     // Add new Phone to Client
-    @RequestMapping(value = "/addphone", method = RequestMethod.POST)
+    @RequestMapping(value = "/addphone/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<String> addPhone(@Valid @RequestBody Phone phone) {
-        Pair<Boolean, String> pair = clientService.addPhone(phone);
-        if (pair.getKey()) {
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .contentType(MediaType.TEXT_PLAIN)
-                    .body(pair.getValue());
+    public ResponseEntity<String> addPhone(@PathVariable("id") Integer clientId, @Valid @RequestBody Phone phone) {
+
+        Pair<Boolean, String> result = getNormalizePhoneNumber(phone);
+
+        if (result.getKey()) {
+            phone.setPhoneNumber(result.getValue());
+            Pair<Boolean, String> pair = clientService.addPhone(clientId, phone);
+            if (pair.getKey()) {
+                return ResponseEntity.status(HttpStatus.CREATED)
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .body(pair.getValue());
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .body(pair.getValue());
+            }
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .contentType(MediaType.TEXT_PLAIN)
-                    .body(pair.getValue());
+                    .body(result.getValue());
         }
     }
 
@@ -74,5 +87,17 @@ public class ClientController {
                     .contentType(MediaType.TEXT_PLAIN)
                     .body(pair.getValue());
         }
+    }
+
+    private Pair<Boolean, String> getNormalizePhoneNumber(Phone phone) {
+        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+        Phonenumber.PhoneNumber phoneNumber = null;
+        try {
+            String clearPhone = phone.getPhoneNumber().replaceAll("[^+0-9]", "");
+            phoneNumber =  phoneUtil.parse(clearPhone,"RU");
+        } catch (NumberParseException e) {
+            return  new Pair<Boolean, String>(false,e.getMessage());
+        }
+        return  new Pair<Boolean, String>(true,"+"+phoneNumber.getCountryCode() + phoneNumber.getNationalNumber());
     }
 }

@@ -49,12 +49,12 @@ public class CllientServiceImpl implements ClientService {
     }
 
     @Override
-    public synchronized javafx.util.Pair<Boolean, String> addPhone(Phone phone) {
+    public synchronized javafx.util.Pair<Boolean, String> addPhone(Integer clientId, Phone phone) {
         if (phoneDao.phoneExists(phone.getPhoneNumber())) {
             return new javafx.util.Pair<Boolean, String>(false, "phone alredy exists");
         } else {
             try {
-                phoneDao.addPhone(phone);
+                phoneDao.addPhone(clientId,phone);
             } catch (Exception e) {
                 return new javafx.util.Pair<Boolean, String>(false, e.getLocalizedMessage());
             }

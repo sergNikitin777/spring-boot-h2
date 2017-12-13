@@ -17,7 +17,7 @@ public interface ClientService {
 
     javafx.util.Pair<Boolean,String> addClient(Client client);
 
-    javafx.util.Pair<Boolean, String> addPhone(Phone phone);
+    javafx.util.Pair<Boolean, String> addPhone(Integer clientId, Phone phone);
 
     Pair<Boolean,String> editPhone(Phone phone);
 }

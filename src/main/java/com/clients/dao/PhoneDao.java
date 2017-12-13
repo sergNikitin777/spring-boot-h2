@@ -6,7 +6,7 @@ public interface PhoneDao {
 	
     boolean phoneExists(String phoneNumber);
 
-	void addPhone(Phone phone);
+	void addPhone(Integer clientId, Phone phone);
 
     boolean phoneExistsById(Integer id);
 
