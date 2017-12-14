@@ -3,8 +3,6 @@ package com.clients.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 import static javax.persistence.GenerationType.IDENTITY;
 

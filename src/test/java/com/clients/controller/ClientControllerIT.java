@@ -31,7 +31,7 @@ public class ClientControllerIT {
         Assert.assertEquals(200,response.getStatusCode().value());
 
 
-        //Добавление номера
+        //Добавление клиента
         String answer = addClient();
         Assert.assertEquals("success",answer);
 
