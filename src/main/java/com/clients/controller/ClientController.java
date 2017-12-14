@@ -41,7 +41,7 @@ public class ClientController {
                     .contentType(MediaType.TEXT_PLAIN)
                     .body(pair.getValue());
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            return ResponseEntity.status(HttpStatus.NOT_MODIFIED)
                     .contentType(MediaType.TEXT_PLAIN)
                     .body(pair.getValue());
         }
@@ -62,12 +62,12 @@ public class ClientController {
                         .contentType(MediaType.TEXT_PLAIN)
                         .body(pair.getValue());
             } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                return ResponseEntity.status(HttpStatus.NOT_MODIFIED)
                         .contentType(MediaType.TEXT_PLAIN)
                         .body(pair.getValue());
             }
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            return ResponseEntity.status(HttpStatus.NOT_MODIFIED)
                     .contentType(MediaType.TEXT_PLAIN)
                     .body(result.getValue());
         }
@@ -83,7 +83,7 @@ public class ClientController {
                     .contentType(MediaType.TEXT_PLAIN)
                     .body(pair.getValue());
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            return ResponseEntity.status(HttpStatus.NOT_MODIFIED)
                     .contentType(MediaType.TEXT_PLAIN)
                     .body(pair.getValue());
         }
